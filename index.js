@@ -1,5 +1,5 @@
-const doctor = require('./doctor');
-const patient = require('./patient');
+const doctor = require('./models/doctor');
+const patient = require('./models/patient');
 
 const doctor1 = new doctor('Eda', 'Demir', 'Female', '+(90)555-555-55-55', 'edademir@gmail.com', 'lafoay3DHMBCG');
 const patient1 = new patient('Ceyhun', 'Arslan', 'Male', '+(90)555-555-55-55', 'ceyhunarslan@gmail.com', 'asfsdgsgsdfg');
