@@ -1,9 +1,9 @@
-const user = require('./user');
+const User = require('./user');
 const policlinic = require('./policlinic');
 const bloodAnalysis = require('./bloodAnalysis');
 const dietPlan = require('./dietPlan');
 
-class doctor extends user {
+class Doctor extends User {
     constructor(name, surname, gender, phone, email, password) {
         super(name, surname, gender, phone, email, password);
 
@@ -31,4 +31,4 @@ class doctor extends user {
     }
 }
 
-module.exports = doctor;
+module.exports = Doctor;

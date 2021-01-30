@@ -1,28 +1,24 @@
 const appointment = require('./appointment');
-const user = require('./user');
+const User = require('./user');
 
-class patient {
-    constructor (name) {
-        this.name = name;
-        // this.surname = surname;
-        // this.gender = gender;
-        // this.phone = phone;
-        // this.email = email;
-        // this.password = password;
-        // this.appointments = [];
+class Patient extends User {
+    constructor (name,surname, gender, phone, email, password) {
+        super(name,surname, gender, phone, email, password);
+
+        this.appointments = [];
     }
 
-    // makeAppointment(doctor, date) {
-    //     const _appointment = new appointment(doctor, this, date);
+    makeAppointment(doctor, date) {
+        const _appointment = new appointment(doctor, this, date);
 
-    //     this.appointments.push(_appointment);
+        this.appointments.push(_appointment);
 
-    //     return _appointment;
-    // }
+        return _appointment;
+    }
 
-    static create({name}) {
-        return new patient(name);
+    static create({name, surname, gender, phone, email, password}) {
+        return new Patient(name, surname, gender, phone, email, password);
     }
 }
 
-module.exports = patient;
+module.exports = Patient;

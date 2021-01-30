@@ -1,4 +1,4 @@
-class dietPlan {
+class DietPlan {
     constructor(patient, startDate, endDate) {
         this.patient = patient;
         this.startDate = startDate;
@@ -6,4 +6,4 @@ class dietPlan {
     }
 }
 
-module.exports = dietPlan;
+module.exports = DietPlan;

@@ -1,4 +1,4 @@
-class bloodAnalysis {
+class BloodAnalysis {
     constructor(patient, HDL_LDL, TSH) {
         this.patient = patient;
         this.HDL_LDL = HDL_LDL;
@@ -6,4 +6,4 @@ class bloodAnalysis {
     }
 }
 
-module.exports = bloodAnalysis;
+module.exports = BloodAnalysis;
