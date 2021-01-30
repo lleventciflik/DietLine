@@ -1,8 +1,9 @@
 const appointment = require('./appointment');
+const user = require('./user');
 
-class patient {
-    constructor (name) {
-        this.name = name;
+class patient extends user{
+    constructor (name, surname, gender, phone, email, password) {
+        super(name, surname, gender, phone, email, password);
         this.appointments = [];
     }
 
@@ -11,7 +12,7 @@ class patient {
 
         this.appointments.push(_appointment);
 
-        return this.appointments;
+        return _appointment;
     }
 }
 
