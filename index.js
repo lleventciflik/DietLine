@@ -1,16 +1,16 @@
 const doctor = require('./models/doctor');
 const patient = require('./models/patient');
+const patientDatabase= require('./database/patientDatabase');
 
 const doctor1 = new doctor('Eda', 'Demir', 'Female', '+(90)555-555-55-55', 'edademir@gmail.com', 'lafoay3DHMBCG');
 const patient1 = new patient('Ceyhun', 'Arslan', 'Male', '+(90)555-555-55-55', 'ceyhunarslan@gmail.com', 'asfsdgsgsdfg');
+const patient2 = new patient('Esra');
 
-doctor1.addPoliclinic('Eda Demir Poliklinik', 'Izmir/Alsancak', '234247681');
 
-doctor1.addPatientBloodAnalys(patient1, '0.1', '%12');
+patientDatabase.save(patient2);
 
-console.log(doctor1);
-console.log(patient1);
 
-console.log(patient1.makeAppointment(doctor1, '12 Şubat'));
+const user = patientDatabase.findByName('Esra');
 
-console.log(doctor1.addDietPlan(patient1, '28 Ocak', '7 Şubat'));
+
+console.log(user)
