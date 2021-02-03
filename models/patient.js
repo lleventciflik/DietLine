@@ -5,6 +5,8 @@ class Patient extends User {
     constructor (name,surname, gender, phone, email, password) {
         super(name,surname, gender, phone, email, password);
 
+        this.verify = false;
+        this.doctor = null;
         this.appointments = [];
     }
 
@@ -14,6 +16,13 @@ class Patient extends User {
         this.appointments.push(_appointment);
 
         return _appointment;
+    }
+
+    goVerifiedAccount (doctor) {
+        this.doctor = doctor;
+        this.verify = true;
+
+        return 'Success Message';
     }
 
     static create({name, surname, gender, phone, email, password}) {
