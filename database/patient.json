@@ -1,20 +1,21 @@
 [[
-  "1",
-  "2"
+  "1"
 ],{
-  "name": "3",
-  "surname": "4",
-  "gender": "5",
-  "phone": "6",
-  "email": "7",
-  "password": "8",
+  "name": "2",
+  "surname": "3",
+  "gender": "4",
+  "phone": "5",
+  "email": "6",
+  "password": "7",
+  "verify": true,
+  "doctor": "8",
   "appointments": "9"
-},{
+},"Ceyhun","Arslan","Male","+(90)555-555-55-55","ceyhunarslan@gmail.com","asfsdgsgsdfg",{
   "name": "10",
   "surname": "11",
   "gender": "12",
-  "phone": "6",
+  "phone": "5",
   "email": "13",
   "password": "14",
-  "appointments": "15"
-},"Ceyhun","Arslan","Male","+(90)555-555-55-55","ceyhunarslan@gmail.com","asfsdgsgsdfg",[],"Esra","Yılmaz","Female","esrayilmaz@gmail.com","utyjghjgfh",[]]
+  "policlinic": null
+},[],"Eda","Demir","Female","edademir@gmail.com","lafoay3DHMBCG"]

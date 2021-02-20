@@ -1,8 +1,8 @@
 class BloodAnalysis {
-    constructor(patient, HDL_LDL, TSH) {
+    constructor(patient, hdl, tsh) {
         this.patient = patient;
-        this.HDL_LDL = HDL_LDL;
-        this.TSH = TSH;
+        this.hdl = hdl;
+        this.tsh = tsh;
     }
 }
 
