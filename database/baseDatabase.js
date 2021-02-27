@@ -7,29 +7,42 @@ class baseDatabase {
         this.filename = this.model.name.toLowerCase();
     }
 
-    save (objects) {
-        fs.writeFileSync(`${__dirname}/${this.filename}.json`, flatted.stringify(objects, null, 2))
+    save(objects) {
+        return new Promise((resolve, reject) => {
+            fs.writeFile(`${__dirname}/${this.filename}.json`, flatted.stringify(objects, null, 2), (err) => {
+                if (err) return reject(err);
+
+                resolve();
+            });
+        });
     }
 
     load() {
-        const file = fs.readFileSync(`${__dirname}/${this.filename}.json`, 'utf8')
-        const objects = flatted.parse(file)
+        return new Promise((resolve, reject) => {
+            fs.readFile(`${__dirname}/${this.filename}.json`, 'utf8', (err, file) => {
+                if (err) return reject();
 
-        return objects.map(this.model.create);
+                const objects = flatted.parse(file);
+
+                resolve(objects.map(this.model.create));
+            });
+        });
     }
 
-    insert(object){
-        const objects = this.load();
+    async insert(object) {
+        const objects = await this.load();
 
         this.save(objects.concat(object));
     }
 
-    remove (index)  {
-        const objects = this.load();
+    async remove(index) {
+        const objects = await this.load();
 
-        objects.splice(index, 1);
+        return new Promise((resolve) => {
+            objects.splice(index, 1);
 
-        this.save(objects);
+            resolve(this.save(objects));
+        });
     }
 }
 

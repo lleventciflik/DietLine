@@ -1,6 +1,7 @@
 const nutritionist = require('./models/Nutritionist');
 const patient = require('./models/patient');
 const {patientDatabase, nutritionistDatabase} = require('./database');
+const Patient = require('./models/patient');
 
 const nutritionist1 = new nutritionist('Eda', 'Demir', 'Female', '+(90)555-555-55-55', 'edademir@gmail.com', 'lafoay3DHMBCG');
 const patient1 = new patient('Ceyhun', 'Arslan', 'Male', '+(90)555-555-55-55', 'ceyhunarslan@gmail.com', 'asfsdgsgsdfg');
@@ -10,8 +11,24 @@ patient1.goVerifiedAccount(nutritionist1);
 
 patient1.makeAppointment(nutritionist1, '12 Eylül 2021');
 
-patientDatabase.save([patient1]);
+(async () => {
+    console.log('App started');
 
-nutritionistDatabase.save([nutritionist1]);
+    await patientDatabase.save([patient1, patient2]);
+    
+    console.log('Patients Added');
 
-console.log(nutritionistDatabase.load());
+    await nutritionistDatabase.save([nutritionist1]);
+
+    console.log('Nutrition Added');
+
+    const patients = await patientDatabase.load();
+
+    console.log("Patiens Count -> ", patients.length);
+
+    await patientDatabase.remove(0);
+
+    const patients1 = await patientDatabase.load();
+
+    console.log("Patiens Count -> ", patients1.length);
+})({});
