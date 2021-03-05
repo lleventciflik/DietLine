@@ -1,7 +1,7 @@
 const fs = require('fs');
 const flatted = require('flatted');
 
-class baseDatabase {
+class BaseDatabase {
     constructor(model) {
         this.model = model;
         this.filename = this.model.name.toLowerCase();
@@ -32,18 +32,16 @@ class baseDatabase {
     async insert(object) {
         const objects = await this.load();
 
-        this.save(objects.concat(object));
+        return this.save(objects.concat(object));
     }
 
     async remove(index) {
         const objects = await this.load();
 
-        return new Promise((resolve) => {
-            objects.splice(index, 1);
+        objects.splice(index, 1);
 
-            resolve(this.save(objects));
-        });
+        return this.save(objects);
     }
 }
 
-module.exports = baseDatabase;
+module.exports = BaseDatabase;

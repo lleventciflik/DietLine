@@ -1,4 +1,4 @@
-const appointment = require('./Appointment');
+const Appointment = require('./appointment');
 
 class Patient {
     constructor(name, surname, gender, phone, email, password) {
@@ -8,20 +8,12 @@ class Patient {
         this.phone = phone;
         this.email = email;
         this.password = password;
-        this.verify = false;
         this.doctor = null;
         this.appointments = [];
     }
 
     makeAppointment(doctor, date) {
-        return new appointment(doctor, this, date);;
-    }
-
-    goVerifiedAccount(doctor) {
-        this.doctor = doctor;
-        this.verify = true;
-
-        return 'Success Message';
+        return new Appointment(doctor, this, date);;
     }
 
     static create({name,surname,gender,phone,email,password}) {

@@ -1,6 +1,6 @@
-const policlinic = require('./policlinic');
-const bloodAnalysis = require('./bloodAnalysis');
-const dietPlan = require('./dietPlan');
+const Policlinic = require('./policlinic');
+const BloodAnalysis = require('./blood-analysis');
+const DietPlan = require('./diet-plan');
 
 class Nutritionist {
     constructor(name, surname, gender, phone, email, password) {
@@ -14,15 +14,15 @@ class Nutritionist {
     }
 
     addPoliclinic(name, location, taxId) {
-        return new policlinic(name, this, location, taxId);
+        return new Policlinic(name, this, location, taxId);
     }
 
     addPatientBloodAnalys(patient, hdl, TSH) {
-        return new bloodAnalysis(patient, hdl, TSH);;
+        return new BloodAnalysis(patient, hdl, TSH);;
     }
 
     addDietPlan(patient, startDate, endDate) {
-        return new dietPlan(this, patient, startDate, endDate);;
+        return new DietPlan(this, patient, startDate, endDate);
     }
 
     static create({name,surname,gender,phone,email,password}) {

@@ -1,4 +1,4 @@
-const patientDatabase = require('./patientDatabase');
-const nutritionistDatabase = require('./nutritionistDatabase');
+const patientDatabase = require('./patient-database');
+const nutritionistDatabase = require('./nutritionist-database');
 
 module.exports = {patientDatabase, nutritionistDatabase}
