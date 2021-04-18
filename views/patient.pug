@@ -1,0 +1,17 @@
+extend layout 
+
+block content
+
+    body 
+        h5 #{patient.name} #{patient.surname}
+        p #{patient.email}
+        p #{patient.phone}
+
+        p Appoinments
+        ol 
+            if patient.appointments.length
+                each appointment in patient.appointments 
+                    li 
+                        p Nutritionist #{appointment.doctor.name} #{appointment.doctor.surname} - #{appointment.doctor.policlinic.location}
+            else 
+                p No appointment

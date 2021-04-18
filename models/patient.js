@@ -1,23 +1,40 @@
 const Appointment = require('./appointment');
+const {
+    v4: uuidv4
+} = require('uuid');
 
 class Patient {
-    constructor(name, surname, gender, phone, email, password) {
+    constructor(id = uuidv4(), name, surname, gender, phone, email, password, appointments = []) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
         this.password = password;
-        this.doctor = null;
-        this.appointments = [];
+        this.appointments = appointments;
     }
 
     makeAppointment(doctor, date) {
-        return new Appointment(doctor, this, date);;
+        console.log('Doctor ->' + doctor);
+        var appointment = new Appointment(doctor, this, date);
+
+        this.appointments.push(appointment);
+
+        return appointment;
     }
 
-    static create({name,surname,gender,phone,email,password}) {
-        return new Patient(name, surname, gender, phone, email, password);
+    static create({
+        id,
+        name,
+        surname,
+        gender,
+        phone,
+        email,
+        password,
+        appointments
+    }) {
+        return new Patient(id, name, surname, gender, phone, email, password, appointments);
     }
 }
 

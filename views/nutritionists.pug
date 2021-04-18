@@ -1,0 +1,13 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title HomePage
+    body 
+        h2 Nutrionists
+        p There are #{nutrionists.length} patients using diet line app now.
+
+        each nutrionist in nutrionists
+            li #{nutrionist.name}

@@ -1,0 +1,12 @@
+extend layout 
+
+block content
+
+    body 
+        h2 Patients
+        p There are #{patients.length} patients using diet line app now.
+
+        ol 
+            each patient in patients
+                li
+                    a(href=`/patients/${patient.id}`) #{patient.name}

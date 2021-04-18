@@ -35,12 +35,29 @@ class BaseDatabase {
         return this.save(objects.concat(object));
     }
 
-    async remove(index) {
+    async update(object) {
         const objects = await this.load();
+
+        const index = objects.findIndex(o => o.id === object.id);
+
+        objects.splice(index, 1, object);
+
+        await this.save(objects);
+    }
+
+    async removeById(id) {
+        const objects = await this.load();
+        const index = objects.findIndex(o => o.id === id)
 
         objects.splice(index, 1);
 
         return this.save(objects);
+    }
+
+    async findById(id) {
+        const objects = await this.load();
+
+        return objects.find(o => o.id === id);
     }
 }
 
