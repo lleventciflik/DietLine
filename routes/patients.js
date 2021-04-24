@@ -1,50 +1,45 @@
-const Patient = require('../models/patient');
-const {
-    patientDatabase,
-    nutritionistDatabase
-} = require('../database');
 const router = require('express').Router();
+const {
+    patientService
+} = require('../services');
 
 router.get('/', async (req, res) => {
-    const patients = await patientDatabase.load();
+    const patients = await patientService.load();
 
     res.render('patients', {
         patients
     });
 });
 
-router.post('/' ,async (req, res) => {
-    const patient = Patient.create(req.body);
-
-    await patientDatabase.insert(patient);
+router.post('/', (req, res) => {
+    const patient = patientService.insert(req.body);
 
     res.send(patient);
 });
 
-router.post('/:patientId/appointments', async (req,res) => {
-    const {patientId} = req.params;
-    const {nutrionistId} = req.query;
-    
-    const patient = await patientDatabase.findById(patientId);
-    const nutrionist = await nutritionistDatabase.findById(nutrionistId);
+router.patch('/:patientId', async (req, res) => {
+    const { name } = req.body;
 
-    patient.makeAppointment(nutrionist, patient, '15 Ekim');
+    await patientService.update(req.params.patientId, { name });
+});
 
-    await patientDatabase.update(patient);
-
-    res.send('Okey');
-}); 
-
-router.delete('/:id',async(req, res) => {
-    await patientDatabase.removeById(req.params.id);
+router.delete('/:id', async (req, res) => {
+    await patientService.removeById(req.params.id);
 
     res.send('Remove User');
 });
 
-router.get('/:id', async (req, res) => {
-    const patient = await patientDatabase.findById(req.params.id);
+router.post('/:patientId/appointments', async (req, res) => {
+    const { patientId } = req.params;
+    const { nutritionistId, date } = req.query;
 
-    if (!patient) return res.send('Cannot find patient').status(404);
+    const appointment = patientService.appointment(patientId, nutritionistId, date);
+
+    res.send(appointment);
+});
+
+router.get('/:id', async (req, res) => {
+    const patient = await patientService.findById(req.params.id);
 
     res.render('patient', {
         patient

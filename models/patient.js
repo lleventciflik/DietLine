@@ -1,41 +1,19 @@
-const Appointment = require('./appointment');
-const {
-    v4: uuidv4
-} = require('uuid');
+const mongoose = require('mongoose');
 
-class Patient {
-    constructor(id = uuidv4(), name, surname, gender, phone, email, password, appointments = []) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.gender = gender;
-        this.phone = phone;
-        this.email = email;
-        this.password = password;
-        this.appointments = appointments;
-    }
+const PatientSchema = new mongoose.Schema({
+    name: String,
+    surname: String,
+    gender: String,
+    phone: String,
+    email: String,
+    passwword: String,
+    appointments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Appointment',
+        autopopulate: { maxDepth: 2 },
+    }]
+});
 
-    makeAppointment(doctor, date) {
-        console.log('Doctor ->' + doctor);
-        var appointment = new Appointment(doctor, this, date);
+PatientSchema.plugin(require("mongoose-autopopulate"));
 
-        this.appointments.push(appointment);
-
-        return appointment;
-    }
-
-    static create({
-        id,
-        name,
-        surname,
-        gender,
-        phone,
-        email,
-        password,
-        appointments
-    }) {
-        return new Patient(id, name, surname, gender, phone, email, password, appointments);
-    }
-}
-
-module.exports = Patient;
+module.exports = mongoose.model('Patient', PatientSchema);

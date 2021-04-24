@@ -1,0 +1,10 @@
+extends layout 
+
+block content
+    body
+        h1 Appointments
+            ol 
+                each appointment in appointments
+                    a(href=`/appointments/${appointment.id}`)
+                        p #{appointment.id} - #{appointment.date}
+                    

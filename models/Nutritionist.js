@@ -2,58 +2,68 @@ const Policlinic = require('./policlinic');
 const BloodAnalysis = require('./blood-analysis');
 const DietPlan = require('./diet-plan');
 const Meal = require('./meal');
-const {
-    v4: uuidv4
-} = require('uuid');
+const mongoose = require('mongoose');
 
-class Nutritionist {
-    constructor(id = uuidv4(), name, surname, gender, phone, email, password, policlinic = null,dietPlans = []) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.gender = gender;
-        this.phone = phone;
-        this.email = email;
-        this.password = password;
-        this.policlinic = policlinic;
-        this.dietPlans = dietPlans;
-    }
+const NutritionistSchema = new mongoose.Schema({
+    name: String,
+    surname: String,
+    gender: String,
+    phone: String,
+    email: String,
+    password: String
+});
 
-    addPoliclinic(name, location, taxId) {
-        let policlinic = new Policlinic(name, this, location, taxId);
+module.exports = mongoose.model('Nutritionist', NutritionistSchema);
 
-        this.policlinic = policlinic;
 
-        return policlinic;
-    }
+// class Nutritionist {
+//     constructor(id = uuidv4(), name, surname, gender, phone, email, password, policlinic = null,dietPlans = []) {
+//         id = id;
+//         this.name = name;
+//         this.surname = surname;
+//         this.gender = gender;
+//         this.phone = phone;
+//         this.email = email;
+//         this.password = password;
+//         this.policlinic = policlinic;
+//         this.dietPlans = dietPlans;
+//     }
 
-    addPatientBloodAnalys(patient, hdl, tsh) {
-        let bloodAnalysis = new BloodAnalysis(patient, hdl, tsh);
+//     addPoliclinic(name, location, taxId) {
+//         let policlinic = new Policlinic(name, this, location, taxId);
 
-        return bloodAnalysis;
-    }
+//         this.policlinic = policlinic;
 
-    addDietPlan(patient, mealCount, startDate, endDate) {
-        const dietPlan = new DietPlan(this, patient, mealCount, startDate, endDate);
+//         return policlinic;
+//     }
 
-        this.dietPlans.push(dietPlan);
+//     addPatientBloodAnalys(patient, hdl, tsh) {
+//         let bloodAnalysis = new BloodAnalysis(patient, hdl, tsh);
 
-        return dietPlan;
-    }
+//         return bloodAnalysis;
+//     }
 
-    static create({
-        id,
-        name,
-        surname,
-        gender,
-        phone,
-        email,
-        password,
-        policlinic,
-        dietPlans
-    }) {
-        return new Nutritionist(id, name, surname, gender, phone, email, password,policlinic, dietPlans);
-    }
-}
+//     addDietPlan(patient, mealCount, startDate, endDate) {
+//         const dietPlan = new DietPlan(this, patient, mealCount, startDate, endDate);
 
-module.exports = Nutritionist;
+//         this.dietPlans.push(dietPlan);
+
+//         return dietPlan;
+//     }
+
+//     static create({
+//         id,
+//         name,
+//         surname,
+//         gender,
+//         phone,
+//         email,
+//         password,
+//         policlinic,
+//         dietPlans
+//     }) {
+//         return new Nutritionist(id, name, surname, gender, phone, email, password,policlinic, dietPlans);
+//     }
+// }
+
+// module.exports = Nutritionist;

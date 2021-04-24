@@ -1,0 +1,11 @@
+extend layout 
+
+block content
+    body 
+        h2 Nutritionists
+        p There are #{nutritionists.length} Nutritionist using diet line app now.
+
+        ol 
+            each nutritionist in nutritionists
+                li
+                    a(href=`/nutritionists/${nutritionist.id}`) #{nutritionist.name}

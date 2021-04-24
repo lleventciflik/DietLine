@@ -1,6 +1,6 @@
 const Nutritionist = require('./models/nutritionist');
 const Patient = require('./models/patient');
-const {patientDatabase, nutritionistDatabase} = require('./database');
+const {patientService, nutritionistService} = require('./services');
 
 const nutritionist1 = new Nutritionist(undefined, 'Eda', 'Demir', 'Female', '+(90)555-555-55-55', 'edademir@gmail.com', 'lafoay3DHMBCG');
 const patient1 = new Patient(undefined, 'Ceyhun', 'Arslan', 'Male', '+(90)555-555-55-55', 'ceyhunarslan@gmail.com', 'asfsdgsgsdfg', []);
@@ -23,11 +23,11 @@ nutritionist1.addPoliclinic('Eda Demir Policlinic', 'İzmir', '12435123');
 
     console.log(patient1);
 
-    await patientDatabase.save([patient1, patient2]);
+    await patientService.save([patient1, patient2]);
 
-    await nutritionistDatabase.save([nutritionist1]);
+    await nutritionistService.save([nutritionist1]);
 
-    const patients = await patientDatabase.load();
+    const patients = await patientService.load();
 
     console.log("Patiens ", patients);
 })({});

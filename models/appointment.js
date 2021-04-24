@@ -1,9 +1,19 @@
-class Appointment {
-    constructor (doctor, patient, date) {
-        this.doctor = doctor;
-        this.patient = patient;
-        this.date = date;
-    }
-}
+const mongoose = require('mongoose');
 
-module.exports = Appointment;
+const AppoinmentSchema = new mongoose.Schema({
+    patient: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Patient",
+        autopopulate: { maxDepth: 2 }
+    },
+    nutritionist: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Nutritionist',
+        autopopulate: { maxDepth: 2 }
+    },
+    date: String
+});
+
+AppoinmentSchema.plugin(require("mongoose-autopopulate"));
+
+module.exports = mongoose.model('Appointment', AppoinmentSchema);

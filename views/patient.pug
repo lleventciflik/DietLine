@@ -1,7 +1,6 @@
 extend layout 
 
 block content
-
     body 
         h5 #{patient.name} #{patient.surname}
         p #{patient.email}
@@ -12,6 +11,6 @@ block content
             if patient.appointments.length
                 each appointment in patient.appointments 
                     li 
-                        p Nutritionist #{appointment.doctor.name} #{appointment.doctor.surname} - #{appointment.doctor.policlinic.location}
+                        p Nutritionist #{appointment.nutritionist.name} #{appointment.nutritionist.surname}
             else 
                 p No appointment

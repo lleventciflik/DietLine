@@ -1,0 +1,8 @@
+extends layout 
+
+block content
+    body 
+        h1 Appointment
+        a(href=`/nutritionists/${appointment.nutritionist.id}`) Nutritionist  #{appointment.nutritionist.name} #{appointment.nutritionist.surname}  <br>
+        a(href=`/patients/${appointment.patient.id}`) Patient - #{appointment.patient.name} #{appointment.patient.surname} <br>
+        p Date - #{appointment.date}
